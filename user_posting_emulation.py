@@ -20,7 +20,10 @@ class AWSDBConnector:
             self.creds = yaml.safe_load(creds_file)
         
     def create_db_connector(self):
-        engine = sqlalchemy.create_engine(f"mysql+pymysql://{self.creds['USER']}:{self.creds['PASSWORD']}@{self.creds['HOST']}:{self.creds['PORT']}/{self.creds['DATABASE']}?charset=utf8mb4")
+        engine = sqlalchemy.create_engine(
+    f"mysql+pymysql://{self.creds['USER']}:{self.creds['PASSWORD']}@"
+    f"{self.creds['HOST']}:{self.creds['PORT']}/{self.creds['DATABASE']}?charset=utf8mb4"
+    )
         return engine
 
 
@@ -40,6 +43,21 @@ def run_infinite_post_data_loop():
             
             for row in pin_selected_row:
                 pin_result = dict(row._mapping)
+                pin_invoke_url = "https://olr8p6o54g.execute-api.us-east-1.amazonaws.com/production/topics/0e4a38902653.pin"
+                pin_payload = json.dumps({
+                    "records": [
+                        {
+                        "value": {"index": pin_result["index"], "unique_id": pin_result["unique_id"], "title": pin_result["title"], 
+                                  "description": pin_result["description"], "poster_name": pin_result["poster_name"], "follower_count": pin_result["follower_count"],
+                                  "tag_list": pin_result["tag_list"], "is_image_or_video": pin_result["is_image_or_video"], "image_src": pin_result["image_src"],
+                                  "downloaded": pin_result["downloaded"], "save_location": pin_result["save_location"], "category": pin_result["category"]
+                                  }
+                        }
+                    ]
+                })
+                headers = {'Content-Type': 'application/json'}
+                response = requests.request("POST", pin_invoke_url, headers=headers, data=pin_payload)
+                print(response.status_code)
 
             geo_string = text(f"SELECT * FROM geolocation_data LIMIT {random_row}, 1")
             geo_selected_row = connection.execute(geo_string)
@@ -52,11 +70,11 @@ def run_infinite_post_data_loop():
             
             for row in user_selected_row:
                 user_result = dict(row._mapping)
-            
+
             print(pin_result)
             print(geo_result)
             print(user_result)
-
+            break
 
 if __name__ == "__main__":
     run_infinite_post_data_loop()
