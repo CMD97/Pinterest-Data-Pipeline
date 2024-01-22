@@ -55,9 +55,9 @@ def run_infinite_post_data_loop():
                         }
                     ]
                 })
-                headers = {'Content-Type': 'application/json'}
+                headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
                 response = requests.request("POST", pin_invoke_url, headers=headers, data=pin_payload)
-                print(response.status_code)
+                print("Status Code:", response.status_code)
 
             geo_string = text(f"SELECT * FROM geolocation_data LIMIT {random_row}, 1")
             geo_selected_row = connection.execute(geo_string)
