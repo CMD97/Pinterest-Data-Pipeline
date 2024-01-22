@@ -43,21 +43,6 @@ def run_infinite_post_data_loop():
             
             for row in pin_selected_row:
                 pin_result = dict(row._mapping)
-                pin_invoke_url = "https://olr8p6o54g.execute-api.us-east-1.amazonaws.com/production/topics/0e4a38902653.pin"
-                pin_payload = json.dumps({
-                    "records": [
-                        {
-                        "value": {"index": pin_result["index"], "unique_id": pin_result["unique_id"], "title": pin_result["title"], 
-                                  "description": pin_result["description"], "poster_name": pin_result["poster_name"], "follower_count": pin_result["follower_count"],
-                                  "tag_list": pin_result["tag_list"], "is_image_or_video": pin_result["is_image_or_video"], "image_src": pin_result["image_src"],
-                                  "downloaded": pin_result["downloaded"], "save_location": pin_result["save_location"], "category": pin_result["category"]
-                                  }
-                        }
-                    ]
-                })
-                headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
-                response = requests.request("POST", pin_invoke_url, headers=headers, data=pin_payload)
-                print("Status Code:", response.status_code)
 
             geo_string = text(f"SELECT * FROM geolocation_data LIMIT {random_row}, 1")
             geo_selected_row = connection.execute(geo_string)
@@ -74,7 +59,56 @@ def run_infinite_post_data_loop():
             print(pin_result)
             print(geo_result)
             print(user_result)
-            break
+
+
+        pin_payload = json.dumps({
+            "records": [
+                {
+                "value": {"index": pin_result["index"], "unique_id": pin_result["unique_id"],
+                        "title": pin_result["title"], "description": pin_result["description"], 
+                        "poster_name": pin_result["poster_name"], "follower_count": pin_result["follower_count"],
+                        "tag_list": pin_result["tag_list"], "is_image_or_video": pin_result["is_image_or_video"], 
+                        "image_src": pin_result["image_src"], "downloaded": pin_result["downloaded"], 
+                        "save_location": pin_result["save_location"], "category": pin_result["category"]
+                            }
+                }
+            ]
+        })
+
+        user_payload = json.dumps({
+            "records": [
+                {
+                "value": {"index": user_result["ind"], "first_name": user_result["first_name"], 
+                        "last_name": user_result["last_name"], "age": user_result["age"], 
+                        "date_joined": user_result["date_joined"].strftime("%Y-%m-%d %H:%M:%S")}
+                }
+            ]
+        })
+
+        geo_payload = json.dumps({
+            "records": [
+                {
+                "value":{"index": geo_result["ind"], "country": geo_result["country"], 
+                        "timestamp": geo_result["timestamp"].strftime("%Y-%m-%d %H:%M:%S"), 
+                        "latitude": geo_result["latitude"], "longitude": geo_result["longitude"]} 
+                }
+            ]
+        })
+
+        invoke_url = "https://olr8p6o54g.execute-api.us-east-1.amazonaws.com/production/topics/{}"
+        headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
+        pin_response = requests.request("POST", invoke_url.format("0e4a38902653.pin"), headers=headers, data=pin_payload)
+        user_response = requests.request("POST", invoke_url.format("0e4a38902653.user"), headers=headers, data=user_payload)
+        geo_response = requests.request("POST", invoke_url.format("0e4a38902653.geo"), headers=headers, data=geo_payload)
+
+        if pin_response.status_code == 200 or geo_response.status_code == 200 or user_response.status_code == 200:
+            print('Success')
+        elif pin_response.status_code != 200:
+            print(f'.pin topic error, status code: {pin_response.status_code}')
+        elif user_response.status_code != 200:
+            print(f'.user topic error, status code: {user_response.status_code}')
+        elif geo_response.status_code != 200:
+            print(f'.geo topic error, status code: {geo_response.status_code}')
 
 if __name__ == "__main__":
     run_infinite_post_data_loop()
