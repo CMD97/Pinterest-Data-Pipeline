@@ -101,14 +101,14 @@ def run_infinite_post_data_loop():
         user_response = requests.request("POST", invoke_url.format("0e4a38902653.user"), headers=headers, data=user_payload)
         geo_response = requests.request("POST", invoke_url.format("0e4a38902653.geo"), headers=headers, data=geo_payload)
 
-        if pin_response.status_code == 200 or geo_response.status_code == 200 or user_response.status_code == 200:
-            print('Success')
-        elif pin_response.status_code != 200:
-            print(f'.pin topic error, status code: {pin_response.status_code}')
-        elif user_response.status_code != 200:
-            print(f'.user topic error, status code: {user_response.status_code}')
-        elif geo_response.status_code != 200:
-            print(f'.geo topic error, status code: {geo_response.status_code}')
+        # if pin_response.status_code == 200 or geo_response.status_code == 200 or user_response.status_code == 200:
+        #     print('Success')
+        # elif pin_response.status_code != 200:
+        #     print(f'.pin topic error, status code: {pin_response.status_code}')
+        # elif user_response.status_code != 200:
+        #     print(f'.user topic error, status code: {user_response.status_code}')
+        # elif geo_response.status_code != 200:
+        #     print(f'.geo topic error, status code: {geo_response.status_code}')
 
 if __name__ == "__main__":
     run_infinite_post_data_loop()
