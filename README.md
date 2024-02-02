@@ -69,6 +69,25 @@ conda install --file requirements.txt
 >
 > Please note that these services may have associated costs. Ensure that you review the pricing details for [AWS](https://aws.amazon.com/pricing/) and [Databricks](https://databricks.com/pricing) to understand the pricing structure and potential charges based on your usage. It is the user's responsibility to manage and monitor costs associated with the usage of these services.
 
+### Credentials Setup
+
+The credentials utilised have been revoked to maintain security of the database, to be able to follow along you will need to create a YAML file that houses the credentials for the RDS database you will be extracting the data from, an example file can be seen below:
+
+```yaml
+HOST: [host_name]
+USER: [username]
+PASSWORD: [database_password]
+DATABASE: [database_name]
+PORT: 3306
+```
+> [!NOTE] These three tables must be present in the database to be able to run the application correctly:
+> - pinterest_data
+> - geolocation_data
+> - user_data
+>
+> The columns within the tables are not shown here, however they can be found within the `user_posting-emulation.py` file.
+> 
+> If you are looking to use different tables, the `user_posting_emulation.py` file will need to be modified.
 
 ## File Structure
 
