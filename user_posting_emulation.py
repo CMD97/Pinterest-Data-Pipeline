@@ -31,6 +31,7 @@ new_connector = AWSDBConnector()
 
 
 def run_infinite_post_data_loop():
+    count = 0
     while True:
         sleep(random.randrange(0, 2))
         random_row = random.randint(0, 11000)
@@ -55,10 +56,9 @@ def run_infinite_post_data_loop():
             
             for row in user_selected_row:
                 user_result = dict(row._mapping)
-
-            print(pin_result)
-            print(geo_result)
-            print(user_result)
+            
+            count += 1
+            print(count)
 
 
         pin_payload = json.dumps({
@@ -100,15 +100,6 @@ def run_infinite_post_data_loop():
         pin_response = requests.request("POST", invoke_url.format("0e4a38902653.pin"), headers=headers, data=pin_payload)
         user_response = requests.request("POST", invoke_url.format("0e4a38902653.user"), headers=headers, data=user_payload)
         geo_response = requests.request("POST", invoke_url.format("0e4a38902653.geo"), headers=headers, data=geo_payload)
-
-        # if pin_response.status_code == 200 or geo_response.status_code == 200 or user_response.status_code == 200:
-        #     print('Success')
-        # elif pin_response.status_code != 200:
-        #     print(f'.pin topic error, status code: {pin_response.status_code}')
-        # elif user_response.status_code != 200:
-        #     print(f'.user topic error, status code: {user_response.status_code}')
-        # elif geo_response.status_code != 200:
-        #     print(f'.geo topic error, status code: {geo_response.status_code}')
 
 if __name__ == "__main__":
     run_infinite_post_data_loop()
