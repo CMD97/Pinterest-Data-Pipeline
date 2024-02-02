@@ -32,7 +32,7 @@ A diagram has been included below that gives a visual approach showing how this 
 Clone the repository to your local machine by running the following command inside your terminal.
 
 ```
-git clone https://github.com/CMD97/Pinterest_Data_Pipeline
+git clone https://github.com/CMD97/Pinterest-Data-Pipeline
 ```
 ## Usage 
 
