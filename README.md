@@ -16,7 +16,7 @@ This project is currently being developed as of 31-01-2024
 
 A specialized project by AiCore; this initiative is designed to emulate industry-level skills. It involves creating a robust data pipeline for ingesting and processing pins, geolocation data, and user information using various AWS services. The pipeline utilises both batch and stream processing, culminating in the enhancement of analytical capabilities within Databricks. The final stage involves data cleaning and insertion into dedicated tables within the Databricks environment.
 
-A diagram has been included that gives a visual approach showing how this project will take place.
+A diagram has been included below that gives a visual approach showing how this project will take place.
 
 ![](images/CloudPinterestPipeline.png)
 
