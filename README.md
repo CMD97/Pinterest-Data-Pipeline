@@ -89,6 +89,8 @@ PORT: 3306
 > 
 > If you are looking to use different tables, the `user_posting_emulation.py` file will need to be modified.
 
+TEST
+
 ## File Structure
 
 > Placeholder for the file structure to be added upon completion.
