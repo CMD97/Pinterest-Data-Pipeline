@@ -2,12 +2,12 @@
 
 ## Project Status
 
-This project is currently being developed as of 01-02-2024
+This project is currently being developed.
 
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Installation](#installation-instructions)
+2. [Installation Instructions](#installation-instructions)
 3. [Usage](#usage)
 4. [File Structure](#file-structure)
 5. [License](#license)
@@ -23,20 +23,52 @@ A diagram has been included below that gives a visual approach showing how this 
 ## Installation Instructions
 
 > [!NOTE]
-> - Ensure you have a source-code editor such as Visual Studio Code installed before continuing.
-> - Also ensure you have a package manager such as Conda/pip installed.
-> - Having Git installed is necessary to perform the initial steps.
+> Before you begin, make sure you have the following tools installed on your machine:
+> - A source-code editor. (e.g. VS Code which can be installed from [here](https://code.visualstudio.com/download))
+> - A package manager such as Conda. (Conda can be installed from [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html#regular-installation))
+> - Git for performing the initial steps. (Git can be found [here](https://github.com/git-guides/install-git))
 
 ### 1. Clone the Repository
 
-Clone the repository to your local machine by running the following command inside your terminal.
+Clone the repository to your local machine using the following command in your terminal:
 
-```
+```bash
 git clone https://github.com/CMD97/Pinterest-Data-Pipeline
 ```
-## Usage 
 
-> Placeholder for usage information to be added.
+### 2. Create and Activate the Conda Environment
+
+Create the environment to house the dependencies required to run the application.
+```bash
+conda create --name pinterest-env
+conda activate pinterest-env
+```
+
+### 3. Navigate to the Project Directory
+
+Navigate to the directory so we're able to utilise the files inside.
+
+```bash
+cd Pinterest-Data-Pipeline
+```
+
+### 4. Install Dependencies
+
+Finally, install the dependencies that are located within the requirements.txt file inside the directory.
+
+```bash
+conda install --file requirements.txt
+```
+
+## Usage
+
+> [!NOTE]
+> To proceed with the usage of this project you must have access to the following services:
+> - Amazon Web Services (AWS)
+> - Databricks Unified Analytics Platform
+>
+> Please note that these services may have associated costs. Ensure that you review the pricing details for [AWS](https://aws.amazon.com/pricing/) and [Databricks](https://databricks.com/pricing) to understand the pricing structure and potential charges based on your usage. It is the user's responsibility to manage and monitor costs associated with the usage of these services.
+
 
 ## File Structure
 
