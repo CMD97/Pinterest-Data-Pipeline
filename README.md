@@ -29,7 +29,7 @@ A diagram has been included that gives a visual approach showing how this projec
 
 ### 1. Clone the Repository
 
-Clone the repository
+Clone the repository to your local machine by running the following command inside your terminal.
 
 ```
 git clone https://github.com/CMD97/Pinterest_Data_Pipeline
