@@ -2,7 +2,7 @@
 
 ## Project Status
 
-This project is currently being developed as of 31-01-2024
+This project is currently being developed as of 02-01-2024
 
 ## Table of Contents
 
