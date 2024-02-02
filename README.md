@@ -16,14 +16,24 @@ This project is currently being developed as of 31-01-2024
 
 A specialized project by AiCore; this initiative is designed to emulate industry-level skills. It involves creating a robust data pipeline for ingesting and processing pins, geolocation data, and user information using various AWS services. The pipeline utilises both batch and stream processing, culminating in the enhancement of analytical capabilities within Databricks. The final stage involves data cleaning and insertion into dedicated tables within the Databricks environment.
 
-A diagram has been included to be able to visually process how this project will run.
+A diagram has been included that gives a visual approach showing how this project will take place.
 
 ![](images/CloudPinterestPipeline.png)
 
 ## Installation Instructions
 
-> Placeholder for future installation instructions to be added.
+> [!NOTE]
+> - Ensure you have a source-code editor such as Visual Studio Code installed before continuing.
+> - Also ensure you have a package manager such as Conda/pip installed.
+> - Having Git installed is necessary to perform the initial steps.
 
+### 1. Clone the Repository
+
+Clone the repository
+
+```
+git clone https://github.com/CMD97/Pinterest_Data_Pipeline
+```
 ## Usage 
 
 > Placeholder for usage information to be added.
