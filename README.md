@@ -80,7 +80,8 @@ PASSWORD: [database_password]
 DATABASE: [database_name]
 PORT: 3306
 ```
-> [!NOTE] These three tables must be present in the database to be able to run the application correctly:
+> [!NOTE] 
+> These three tables must be present in the database to be able to run the application correctly:
 > - pinterest_data
 > - geolocation_data
 > - user_data
@@ -88,8 +89,6 @@ PORT: 3306
 > The columns within the tables are not shown here, however they can be found within the `user_posting-emulation.py` file.
 > 
 > If you are looking to use different tables, the `user_posting_emulation.py` file will need to be modified.
-
-TEST
 
 ## File Structure
 
