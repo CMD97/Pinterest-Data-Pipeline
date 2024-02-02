@@ -1,4 +1,4 @@
-# Pinterest-Data-Pipeline
+# Pinterest Data Pipeline
 
 ## Project Status
 
