@@ -4,3 +4,6 @@ aws_rds_creds.yaml
 
 # Testing functionality before implementing
 pinterest.ipynb
+
+# Housing files and locations inside
+.env
