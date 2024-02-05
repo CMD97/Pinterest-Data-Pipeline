@@ -29,12 +29,21 @@ class AWSDBConnector:
 
 new_connector = AWSDBConnector()
 
+def generate_unique_random(generated_numbers):
+    while True:
+        random_number = random.randint(0, 11000)
+        if random_number not in generated_numbers:
+            generated_numbers.add(random_number)
+            return random_number
+            
 
 def run_infinite_post_data_loop():
     count = 0
+    generated_numbers = set()
+
     while True:
-        sleep(random.randrange(0, 2))
-        random_row = random.randint(0, 11000)
+        sleep(random.randrange(0, 1))
+        random_row = generate_unique_random(generated_numbers)
         engine = new_connector.create_db_connector()
 
         with engine.connect() as connection:
@@ -58,7 +67,8 @@ def run_infinite_post_data_loop():
                 user_result = dict(row._mapping)
             
             count += 1
-            print(count)
+            print(f"Number of rows submitted is: {count}\n",
+                  f"Row selected: {random_row}")
 
 
         pin_payload = json.dumps({
@@ -100,11 +110,18 @@ def run_infinite_post_data_loop():
         pin_response = requests.request("POST", invoke_url.format("0e4a38902653.pin"), headers=headers, data=pin_payload)
         user_response = requests.request("POST", invoke_url.format("0e4a38902653.user"), headers=headers, data=user_payload)
         geo_response = requests.request("POST", invoke_url.format("0e4a38902653.geo"), headers=headers, data=geo_payload)
+        
+        # Status codes
+        if pin_response.status_code != 200:
+            print(f"Error from pin_response: {pin_response.status_code}")
+            break
+        elif user_response.status_code != 200:
+            print(f"Error from user_response: {user_response.status_code}")
+            break
+        elif geo_response.status_code != 200:
+            print(f"Error from geo_response: {geo_response.status_code}")
+        else:
+            continue
 
 if __name__ == "__main__":
     run_infinite_post_data_loop()
-    print('Working')
-    
-    
-
-
