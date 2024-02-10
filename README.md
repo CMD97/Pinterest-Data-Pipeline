@@ -81,7 +81,7 @@ DATABASE: [database_name]
 PORT: 3306
 ```
 > [!NOTE] 
-> These three tables must be present in the database to be able to run the application correctly:
+> Three tables must be present in the database to be able to run the application correctly:
 > - pinterest_data
 > - geolocation_data
 > - user_data
