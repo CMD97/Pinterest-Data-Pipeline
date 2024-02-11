@@ -25,7 +25,7 @@ default_args = {
 
 
 with DAG('0e4a38902653_dag',
-    start_date=datetime(2024, 2, 10),
+    start_date=datetime(2024, 2, 11),
     schedule_interval='@daily',
     catchup=False,
     default_args=default_args
